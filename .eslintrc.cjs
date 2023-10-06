@@ -20,7 +20,7 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ['*.svelte'],
+			files: ['*.svelte', '*.html'],
 			parser: 'svelte-eslint-parser',
 			parserOptions: {
 				parser: '@typescript-eslint/parser'
