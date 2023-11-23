@@ -1,21 +1,13 @@
 <svelte:head>
-  <title>{songData.song_title}</title>
+  <title>Grace Kelly</title>
 </svelte:head>
 
 <script lang='ts'>
 	import { getSongHarmony } from "$lib";
-	import type { SongHarmony } from "@/@types";
-	import { onMount } from "svelte";
 
-  let songData = {} as SongHarmony
+  let songData = getSongHarmony()
   let paused = true
   let muted = false
-
-  onMount(async ()=> {
-    const data = await getSongHarmony()
-    console.log(data);
-    songData = data
-  })
 
   function playFromStart() {
     const audios = document.querySelectorAll('audio')
@@ -34,7 +26,9 @@
   }
 </script>
 
-<!-- TODO: loading state -->
+{#await songData}
+<h2>LOADING ...</h2>
+{:then songData}
 <h1>{songData.artist} - {songData.song_title}</h1>
 <button
 class="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
@@ -58,3 +52,4 @@ on:click={() => muted = !muted}>MUTE</button>
      </section>
    {/each}
 {/if}
+{/await}
