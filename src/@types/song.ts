@@ -8,6 +8,7 @@ export interface SongHarmony {
   song_title: string;
   lyrics: string;
   voicings: Voicing[];
+  route_name: string;
 }
 
 interface Voicing {

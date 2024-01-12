@@ -7,9 +7,9 @@ const CMS_DICTIONARY = {
   songHarmony: 'song_harmony',
 } as const
 
-export const getSongHarmony = async () => {
+export const getAllSongs = async () => {
   const response = await butterProvider.content.retrieve([CMS_DICTIONARY.songHarmony])
-  const [song] = response.data?.data.song_harmony || [];
+  const songs = response.data?.data.song_harmony || [];
 
-  return song as SongHarmony
+  return songs as SongHarmony[]
 }
