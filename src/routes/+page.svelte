@@ -1,8 +1,7 @@
 <script lang='ts'>
-	import type { songOverview } from "./+page.server";
+	import type { load } from "./+page.server";
 
-  export let data: { songs: songOverview[]}
-  console.log(data);
+  export let data: ReturnType<typeof load> extends Promise<infer T> ? T : never;
 </script>
 
 <main>
