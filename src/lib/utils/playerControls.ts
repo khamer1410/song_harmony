@@ -1,36 +1,26 @@
-// eslint-disable-next-line prefer-const
-export let allMuted = false;
-export let allPlaying = false;
-export let looping = false;
+import { writable } from 'svelte/store';
+
+export const allMuted = writable(false);
+export const allPlaying = writable(false);
+export const isLooping = writable(false); // TODO: fix loop desync
 
 export function playFromStart() {
-  const audios = document.querySelectorAll('audio');
-  audios.forEach((audio) => {
-    audio.currentTime = 0;
-    audio.play();
-  });
-  allPlaying = true;
+	const audios = document.querySelectorAll('audio');
+	audios.forEach((audio) => {
+		audio.currentTime = 0;
+		audio.play();
+	});
+	allPlaying.set(true);
 }
 
 export function togglePlay() {
-  if (!allPlaying) {
-    const audios = document.querySelectorAll('audio');
-    audios.forEach((audio) => {
-      audio.play();
-    });
-  } else {
-    const audios = document.querySelectorAll('audio');
-    audios.forEach((audio) => {
-      audio.pause();
-    });
-  }
-  allPlaying = !allPlaying;
+	allPlaying.update((value) => !value);
 }
 
 export function toggleLoop() {
-  looping = !looping;
-  const audios = document.querySelectorAll('audio');
-  audios.forEach((audio) => {
-    audio.loop = looping;
-  });
+	isLooping.update((value) => !value);
+}
+
+export function toggleMute() {
+	allMuted.update((value) => !value);
 }
