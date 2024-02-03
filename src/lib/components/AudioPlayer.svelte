@@ -8,7 +8,7 @@
 
 	// play / pause reaction
 	$: if (playing) {
-		audioElement.play();
+		audioElement?.play();
 	} else {
 		audioElement?.pause();
 	}
@@ -18,11 +18,6 @@
 	<audio bind:this={audioElement} {src} loop={looping} {muted} controls />
 	<h2>{name}</h2>
 	<label class="inline-flex items-center cursor-pointer">
-		<input
-			type="checkbox"
-			class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out cursor-pointer"
-			bind:checked={muted}
-		/>
-		<span class="ml-2 text-sm leading-5 text-gray-700">{muted ? 'Unmute' : 'Mute'}</span>
+		<input type="checkbox" class="switch warn lg" data-content="🔇" bind:checked={muted} />
 	</label>
 </section>
