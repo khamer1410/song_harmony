@@ -50,6 +50,15 @@
 	{/if}
 </section>
 
+{#if song.lyrics}
+	<section class="bg-white p-4 rounded-lg shadow-md mt-4">
+		<h2 class="text-lg font-semibold mb-2">Lyrics</h2>
+		<p class="text-gray-700 whitespace-pre-wrap">
+			{song.lyrics}
+		</p>
+	</section>
+{/if}
+
 <section
 	class="fixed bg-secondary py-4 bottom-0 left-0 right-0 flex justify-center flex-wrap gap-2"
 >
